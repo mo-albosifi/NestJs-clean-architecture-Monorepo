@@ -16,7 +16,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix)
   const port = config.get("port") || 3333
   await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix)
+    Logger.log(' ✋  Listening at http://localhost:' + port + '/' + globalPrefix)
     Logger.log(`Running in ${config.get("environment")} mode`);
     Logger.log(`Running in ${port} mode`);
 
