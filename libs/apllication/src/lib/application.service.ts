@@ -11,6 +11,13 @@ export class ApplicationService {
         @Inject('IBookRepo') private readonly bookRepo: IBookRepo
     ) {}
 
+//     const vm = Mapper.map(user, UserVm);
+// /**
+//  * UserVm { firstName: 'Chau', lastName: 'Tran', age: 28, bio: 'Developer' }
+//  */
+// // Pseudo code to get a list of Users
+// const users = this.db.User.findAll();
+// const vms = Mapper.mapArray(users, UserVm);
 
     getAllBook = () : Promise<Book[]>=> this.bookRepo.getAllBook();
 
