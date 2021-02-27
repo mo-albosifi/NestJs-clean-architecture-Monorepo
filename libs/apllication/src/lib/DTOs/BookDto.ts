@@ -1,10 +1,13 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { AutoMap } from '@nartc/automapper';
 
 export class BookDto{
+    @AutoMap()
     id?: number
-    
-    name: string
 
+    @AutoMap()
+    name: string
+    
+    @AutoMap()
     isActive: boolean;
 }

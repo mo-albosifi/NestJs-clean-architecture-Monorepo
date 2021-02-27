@@ -13,7 +13,7 @@ export const DataBase_CONFIG : TypeOrmModuleOptions=
     synchronize: true,
     keepConnectionAlive: true,
     logging: false,
-    entities: [Book],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
     // entities: ['dist/libs/domain/src/lib/Entities/Book.entity.ts'],
 
     // entities: [
