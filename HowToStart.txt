@@ -1,0 +1,156 @@
+Blog https://dev.to/beeman/set-up-and-configure-a-new-nx-workspace-1oh6
+Blog https://beeman.dev/posts/introduction-to-building-api-s-with-nestjs-and-nrwl-nx-1l2b/
+
+--------------------------------------------------------------------------------------------
+1- npm create nx-workspace beehive
+
+--------------------------------------------------------------------------------------------
+ 2- Update the Prettier configuration
+{
+  "singleQuote": true,
+  "printWidth": 120,
+  "semi": false,
+  "trailingComma": "all",
+  "arrowParens": "always"
+}
+--------------------------------------------------------------------------------------------
+3- Re-format your code with the new settings 
+nx format:write --all
+--------------------------------------------------------------------------------------------
+
+Add a NestJS API to a Nx Workspace 
+npm add -D @nrwl/nest
+--------------------------------------------------------------------------------------------
+nx generate @nrwl/nest:app api
+
+--------------------------------------------------------------------------------------------
+to run nx serve api
+
+--------------------------------------------------------------------------------------------
+
+Generate the library 
+nx generate @nrwl/nest:lib core
+--------------------------------------------------------------------------------------------
+
+Use the library 
+--------------------------------------------------------------------------------------------
+
+Add the configuration.
+npm i  @nestjs/config joi
+--------------------------------------------------------------------------------------------
+Create the configuration file 
+create the directory libs/core/src/lib/config, this is where the configuration is stored.
+
+Next, create the file libs/core/src/lib/config/configuration.ts, and add the following snippet:
+
+export const configuration = () => ({
+  environment: process.env.NODE_ENV,
+  port: parseInt(process.env.PORT || "3000", 10),
+});
+
+
+--------------------------------------------------------------------------------------------
+
+Create the validation file
+
+Create the file libs/core/src/lib/config/validation.ts and add the following snippet:
+
+import * as Joi from "joi";
+
+export const validationSchema = Joi.object({
+  NODE_ENV: Joi.string().valid("development", "production", "test").required(),
+  PORT: Joi.number().default(3000),
+});
+
+--------------------------------------------------------------------------------------------
+Tying it all together
+
+Open libs/core/src/lib/core.module.ts and add the following imports at the top:
+
+import { ConfigModule } from "@nestjs/config";
+import { configuration } from "./config/configuration";
+import { validationSchema } from "./config/validation";
+
+
+--------------------------------------------------------------------------------------------
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+      validationSchema,
+    }),
+  ],
+  controllers: [],
+  providers: [],
+  exports: [],
+})
+export class CoreModule {}
+
+
+--------------------------------------------------------------------------------------------
+Add a .env file for development. 
+NODE_ENV=development
+PORT=3000
+
+--------------------------------------------------------------------------------------------
+Open apps/api/src/main.ts and add the following imports at the top:
+
+import { ConfigService } from "@nestjs/config";
+
+Next, in the body of the bootstrap function, add the following to the start of the method, right below the definition of const app:
+
+const app = await NestFactory.create(AppModule);
+const config = app.get(ConfigService);
+Logger.log("Listening at http://localhost:" + port + "/" + globalPrefix);
+Logger.log(`Running in ${config.get("environment")} mode`);
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+-------------------------------------

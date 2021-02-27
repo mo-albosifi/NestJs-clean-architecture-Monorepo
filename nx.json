@@ -1,0 +1,26 @@
+{
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "nx-nest-js-mono-repo-arch",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "nx-mono-repo-nest-js": { "tags": [] },
+    "api": { "tags": [] },
+    "core": { "tags": [] },
+    "apllication": { "tags": [] },
+    "infrastructore": { "tags": [] },
+    "domain": { "tags": [] }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@nx-nest-js-mono-repo-arch/core": ["libs/core/src/index.ts"],
+      "@nx-nest-js-mono-repo-arch/apllication": ["libs/apllication/src/index.ts"],
+      "@nx-nest-js-mono-repo-arch/infrastructore": ["libs/infrastructore/src/index.ts"],
+      "@nx-nest-js-mono-repo-arch/domain": ["libs/domain/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

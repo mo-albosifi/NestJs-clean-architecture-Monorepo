@@ -1,0 +1,22 @@
+{
+    "name": "default",
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "",
+    "database": "test",
+    "synchronize": true,
+    "entities": [
+      "dist/domain/entities/**/*.js"
+    ],
+    "keepConnectionAlive": true,
+    "logging": false,
+    "migrationsTableName": "custom_migration_table",
+    "migrations": [
+      "dist/data/migration/**/*.js"
+    ],
+    "cli": {
+      "migrationsDir": "src/data/migration"
+    }
+  }
